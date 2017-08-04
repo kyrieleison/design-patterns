@@ -1,4 +1,6 @@
 class Report
+  attr_accessor :formatter
+
   def initialize(formatter)
     @formatter = formatter
     @title = "TITLE"
@@ -40,3 +42,6 @@ end
 report = Report.new(HTMLReportFormatter)
 # report = Report.new(PlainTextReportFormatter)
 report.output_report
+
+# report.formatter = PlainTextReportFormatter
+# report.output_report
