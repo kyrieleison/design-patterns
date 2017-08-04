@@ -1,5 +1,6 @@
 class Report
   attr_accessor :formatter
+  attr_reader :title, :text
 
   def initialize(formatter)
     @formatter = formatter
@@ -8,19 +9,19 @@ class Report
   end
 
   def output_report
-    @formatter.output_report(@title, @text)
+    @formatter.output_report(self)
   end
 end
 
 class HTMLReportFormatter
   class << self
-    def output_report(title, text)
+    def output_report(context)
       puts '<html>'
       puts '<head>'
-      puts "<title>#{title}</title>"
+      puts "<title>#{context.title}</title>"
       puts '</head>'
       puts '<body>'
-      text.each do |t|
+      context.text.each do |t|
         puts "<p>#{t}</p>"
       end
       puts '</body>'
@@ -30,9 +31,9 @@ end
 
 class PlainTextReportFormatter
   class << self
-    def output_report(title, text)
-      puts title
-      text.each do |t|
+    def output_report(context)
+      puts context.title
+      context.text.each do |t|
         puts t
       end
     end
