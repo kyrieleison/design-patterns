@@ -5,7 +5,7 @@ class Report
   end
 
   def output_report(format)
-    if format == 'html'
+    if format == :html
       puts '<html>'
       puts '<head>'
       puts "<title>#{@title}</title>"
@@ -26,4 +26,5 @@ class Report
 end
 
 report = Report.new
-report.output_report('plain')
+report.output_report(:html)
+# report.output_report(:plain)
